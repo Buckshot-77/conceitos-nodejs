@@ -52,12 +52,8 @@ app.post("/users", (request, response) => {
 
 app.get("/todos", checksExistsUserAccount, (request, response) => {
   const todos = get_todo_list(request.username);
-  const { id } = request.params.id;
-  if (!todos.find((todo) => todo.id === id)) {
-    return response.status(404).json({ error: "Todo not found" });
-  }
 
-  return response.status(200).json({ todos });
+  return response.status(200).json(todos);
 });
 
 app.post("/todos", checksExistsUserAccount, (request, response) => {
